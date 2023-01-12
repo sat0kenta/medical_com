@@ -1,0 +1,2 @@
+class FavoritesCount < ApplicationRecord
+end

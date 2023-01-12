@@ -1,0 +1,2 @@
+class CaseComment < ApplicationRecord
+end

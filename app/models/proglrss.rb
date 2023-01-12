@@ -1,0 +1,2 @@
+class Proglrss < ApplicationRecord
+end
