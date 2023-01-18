@@ -1,0 +1,16 @@
+<table class='table'>
+	  <th>ユーザー名</th>
+	  <th><%= user.name %></th>
+  <tr>
+	  <th>ユーザー詳細</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+
+<div class='row'>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  
+  </table> 
+
+</div>

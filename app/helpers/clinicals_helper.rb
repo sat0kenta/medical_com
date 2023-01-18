@@ -1,0 +1,2 @@
+module ClinicalsHelper
+end

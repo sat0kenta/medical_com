@@ -1,21 +1,16 @@
 Rails.application.routes.draw do
-  get 'chats/create'
-  get 'chats/show'
-  get 'chats/validatee'
-  get 'progresses/new'
-  get 'progresses/show'
-  get 'progresses/index'
-  get 'progresses/destroy'
-  get 'operations/new'
-  get 'operations/show'
-  get 'operations/index'
-  get 'drugs/new'
-  get 'drugs/show'
-  get 'drugs/index'
-  get 'cases/new'
-  get 'cases/index'
-  get 'cases/show'
+
+
   root :to =>"homes#top"
+  get "home/about"=>"homes#about"
   devise_for :users
+
+  resources :clinicals, only: [:new,:show,:index,:edit,:create,:destroy,:update] do
+  end
+  resources :users, only: [:index,:show,:new,:edit]
+  resources :drugs, only: [:index,:show,:new]
+  resources :operations, only: [:index,:show,:new]
+  resources :progresses, only: [:index,:show,:new,:destroy]
+  resources :chats, only: [:create,:show,:validatee]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

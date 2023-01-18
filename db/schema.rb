@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_12_124625) do
+ActiveRecord::Schema.define(version: 2023_01_17_074938) do
 
   create_table "case_comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,20 +20,20 @@ ActiveRecord::Schema.define(version: 2023_01_12_124625) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cases", force: :cascade do |t|
+  create_table "chats", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "title", null: false
-    t.text "body", null: false
-    t.string "ope"
-    t.string "drug"
-    t.string "progress"
+    t.integer "case_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "chats", force: :cascade do |t|
+  create_table "clinicals", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "case_id"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.text "ope"
+    t.text "drug"
+    t.text "progress"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_01_12_124625) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

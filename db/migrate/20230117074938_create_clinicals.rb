@@ -1,13 +1,13 @@
-class CreateCases < ActiveRecord::Migration[6.1]
+class CreateClinicals < ActiveRecord::Migration[6.1]
   def change
-    create_table :cases do |t|
-      
+    create_table :clinicals do |t|
+
     t.integer :user_id, null: false
     t.string :title, null: false
     t.text :body, null: false
-    t.string :ope
-    t.string :drug
-    t.string :progress
+    t.text :ope
+    t.text :drug
+    t.text :progress
 
       t.timestamps
     end
