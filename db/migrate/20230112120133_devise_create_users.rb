@@ -34,6 +34,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       
       ## 名前を保存するカラム
       t.string :name
+      ## 年齢を保存するカラム
+      t.string :age
+      ## 身長を保存するカラム
+      t.string :high
+      ## 体重を保存するカラム
+      t.string :weight
+      ## 持病を保存するカラム
+      t.text :chronic
+      ## 自己紹介を保存するカラム
       t.text :introduction
 
       t.timestamps null: false

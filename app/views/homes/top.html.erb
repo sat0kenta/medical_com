@@ -1,13 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-          <h5>medical_comへようこそ！</h5>
-          <p>
-            日常生活の中で『あれ？少し体調がおかしいな？』と、</br>
-            思うことが多々あるかと思います。そんな時はこちらで</br>
-            疑問や不安を共有し、素早く問題に気づき解決できるよう</br>
-            情報の共有や収集をしてみてはいかがでしょうか？</br>
-          </p>
-      </div>
+<div class='container justify-content-center' id='top_container'>
+  <div id='top_gray_background' class='mx-auto'>
+    <div class='row justify-content-center mt-5'>
+      <h2>Medical Communityへようこそ！</h2>
+    </div>
+    <div class='row justify-content-center'>
+      <p>
+        日常生活の中で『あれ？少し体調がおかしいな？』と、</br>
+        思うことが多々あるかと思います。そんな時はこちらで</br>
+        疑問や不安を共有し、素早く問題に気づき解決できるよう</br>
+        情報の共有や収集をしてみてはいかがでしょうか？</br>
+      </p>
+    </div>
+    <div class='row justify-content-center mt-5'>
+      <h5><strong>今週いいねが多かった記事</strong></h5>
+    </div>
+    <div class='row justify-content-center'>
+      <%= render 'clinicals/from', clinicals: @clinicals %>
     </div>
   </div>
+</div>

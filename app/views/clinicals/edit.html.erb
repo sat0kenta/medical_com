@@ -1,0 +1,43 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  		<h1>症例編集</h1>
+  		
+  <%= form_with model:@clinical,local:true do |f| %>
+<%= render 'layouts/errors', obj: f.object %>
+<div class="form-group">
+    <%= f.label :症例 %>
+    <%= f.text_field :title, class: 'form-control case_title' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :症例詳細 %>
+    <%= f.text_area :body, class: 'form-control case_body' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :使用した薬や効能 %>
+    <%= f.text_area :drug, class: 'form-control case_drug' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :オペについて %>
+    <%= f.text_area :ope, class: 'form-control case_ope' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :経過 %>
+    <%= f.text_area :progress, class: 'form-control case_progress' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+  		
+  		
+
+  		<%= link_to 'Show', @clinical %> |
+  		<%= link_to 'Back', clinical_path, class: "back" %>
+  </div>
+</div>

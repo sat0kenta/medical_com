@@ -1,0 +1,9 @@
+<% if clinical.favorited_by?(current_user) %>
+  <%= link_to clinical_favorites_path(clinical),  method: :delete, remote: true do %>
+    ♥<%= clinical.favorites.count %> いいね 
+  <% end %>
+<% else %>
+  <%= link_to clinical_favorites_path(clinical), method: :post, remote: true do %>
+    ♡<%= clinical.favorites.count %> いいね
+  <% end %>
+<% end %>

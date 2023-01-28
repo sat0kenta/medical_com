@@ -1,0 +1,3 @@
+<% if clinical_comment_user == current_user %>
+　<%= link_to "Destroy", clinical_comment_path(clinical, clinical_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true, data: {"turbolinks" => false} %>
+<% end %>

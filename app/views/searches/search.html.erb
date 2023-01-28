@@ -1,0 +1,33 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th></th>
+      <th>症例</th>
+      <th>症例詳細</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @clinicals.each do |clinical| %>
+      <tr>
+        <td>
+          <%= link_to(clinical.user) do %>
+          <%= image_tag clinical.user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to(clinical.user) do %>
+          <% end %>
+        </td>
+        <td><%= link_to clinical.title,clinical_path(clinical.id) %></td>
+        <td><%= clinical.body %></td>
+      </tr>
+
+    <td id="favorite_buttons_<%= clinical.id %>">
+     <%= render "favorites/favorites", clinical: clinical %></td>
+     
+    <% end %>
+  </tbody>
+</table>

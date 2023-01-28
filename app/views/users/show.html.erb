@@ -1,27 +1,81 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="col-sm-12 col-md-8 col-lg-7 px-5 px-sm-0 mx-auto">
+
 <table class='table'>
+  <h1></h1>
     <tr><%= image_tag @user.get_profile_image, size:'100x100' %></tr>
   <tr>
-	  <th>ユーザー名</th>
+	<th>ユーザー名</th>
 	  <th><%= @user.name %></th>
+
 	</tr>
 	 
   <tr>
-	  <th>ユーザー詳細</th>
+	<th>年齢</th>
+	  <th><%= @user.age %>歳</th>
+  </tr>
+  
+  <tr>
+  <th>ユーザー詳細</th>
 	  <th><%= @user.introduction %></th>
   </tr>
-
-<div class='row'>
-  <% if current_user != @user %>
-    <div><%= render "relationships/follow", user: user %></div>
-  <% else %>
-    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  <% end %>
   
-  </table> 
-
+  <tr>
+  <th>身長</th>
+	  <th><%= @user.high %>cm</th>
+  </tr>
+  
+  <tr>
+  <th>体重</th>
+	  <th><%= @user.weight %>kg</th>
+  </tr>
+  
+  <tr>
+  <th>持病</th>
+	  <th><%= @user.chronic %></th>
+  </tr>
+      	<td>フォロー数: <%= @user.follows.count %></td>
+        <td>フォロワー数: <%= @user.followers.count %></td>
+  
+   </table> 
+  
+  <div class="d-flex">
+    <div>
+      <% if current_user != @user %>
+        <div><%= render "relationships/follow", user: @user %></div>
+      <% else %>
+        <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+          <i class="fas fa-user-cog" style="font-size: 20px;"></i>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <div>
+      <%= link_to '投稿一覧へ', user_clinicals_path(@user.id), class:"btn btn-primary btn-lg" %>
+    </div>
+    
+    <div>
+      <% unless @user.id == current_user.id %>
+        <% if (current_user.following? @user) && (@user.following? current_user)  %>
+          <% if @isRoom == true %>
+            <p class="user-show-room">
+              <a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">
+                DMへ 
+              </a>
+            </p>  
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    </div>
+    </div>
+  </div>
 </div>

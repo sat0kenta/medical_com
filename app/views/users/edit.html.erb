@@ -1,21 +1,42 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2>User info</h2>
+    <h2>ユーザー情報編集</h2>
     <%= form_with model:@user, local:true do |f| %>
       <%= render 'layouts/errors', obj: @user %>
       <div class="form-group">
-        <%= f.label :name %>
+        <%= f.label :名前 %>
         <%= f.text_field :name, class: "form-control name" %>
       </div>
      <div class="form-group">
-        <%= f.label :image %>
+        <%= f.label :アイコン %>
         <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>
       <div class="form-group">
-        <%= f.label :introduction %>
+        <%= f.label :自己紹介 %>
         <%= f.text_area :introduction, class: "form-control introduction" %>
       </div>
+      
+      <div class="form-group">
+        <%= f.label :年齢【任意】 %>
+        <%= f.text_field :age, class: "form-control age" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :身長【任意】 %>
+        <%= f.text_field :high, class: "form-control high" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :体重【任意】 %>
+        <%= f.text_field :weight, class: "form-control weight" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :持病【任意】 %>
+        <%= f.text_field :chronic, class: "form-control chronic" %>
+      </div>
+      
       <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
       </div>

@@ -1,0 +1,15 @@
+<% clinical.clinical_comments.each do |clinical_comment| %>
+ <% clinical_comment_user = clinical_comment.user %>
+ <tr>
+   <td>
+  		<%= link_to user_path(clinical_comment_user), class: "user_#{clinical_comment_user.id}" do %>
+    		<%#= attachment_image_tag clinical_comment_user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50" %><br>
+    		<%= clinical_comment_user.name %>
+  		<% end %>
+   </td>
+   <td><%= clinical_comment.comment %></td>
+   <% if current_user == clinical_comment_user %>
+    <td><%= link_to 'Destroy', clinical_clinical_comment_path(clinical_comment.clinical_id, clinical_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %></td>
+   <% end %>
+ </tr>
+<% end %>

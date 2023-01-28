@@ -1,0 +1,3 @@
+$("#clinical_<%= @clinical.id %> .comments-count").html("コメント数: <%= @clinical.clinical_comments.count %>");
+$(".clinical_comments").html("<%= j(render 'clinical_comments/index', clinical: @clinical) %>");
+$("#clinical_comment_comment").val("");

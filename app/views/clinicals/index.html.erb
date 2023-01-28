@@ -1,9 +1,10 @@
-<div class='container px-6 px-sm-0'>
+<div class='container'>
+  <h1>症例一覧</h1>
   <div class='row'>
-
-    <div class='col-md-8 offset-md-2'>
-      <h2>症例一覧</h2>
-      <%= render 'index', clinical: @clinical %>
+    <p id="notice"><%= notice %></p>
+    <div class="d-flex justify-content-center mb-2">
+      <%= render 'searches/search' %>
     </div>
   </div>
+  <%= render 'index', clinical: @clinical %>
 </div>
