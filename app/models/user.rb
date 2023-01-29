@@ -48,5 +48,32 @@ class User < ApplicationRecord
  def following?(user)
     follows.include?(user)
  end
+ 
+  def self.guest
+    find_or_create_by!(name: 'guest', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+  end
+ 
+   # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @clinical = Clinical.where("title LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @clinical = Clinical.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @clinicalr = Clinical.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @clinical = Clinical.where("title LIKE?","%#{word}%")
+    else
+      @clinical = Clinical.all
+    end
+  end
+  
+def active_for_authentication?
+  super && self.is_active
+end
 
 end

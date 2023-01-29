@@ -29,6 +29,13 @@ class UsersController < ApplicationController
   
   end
   
+  def favorites
+    @user = User.find(params[:id])
+    @clinicals = current_user.clinicals.page(params[:page]).per(5)
+    favorites= Favorite.where(user_id: @user.id).pluck(:clinical_id)
+    @favorite_clinicals = Clinical.find(favorites)
+  end
+  
 
   def edit
     @user = User.find(params[:id])

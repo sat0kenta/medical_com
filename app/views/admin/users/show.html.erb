@@ -1,0 +1,34 @@
+<div class='container'>
+  <div class='row'>
+　　<div class="col-md-7">
+  		<h2>clinical case</h2>
+  		<table class='table'>
+      <div class="d-flex flex-column" style="height: 800px;" >
+        <h5>◆症例名</h5>
+        <div class="flex-fill border"><%= link_to @clinical.title, @clinical %></div>
+         <h5>◆症例詳細</h5>
+        <div class="flex-fill border"><%= @clinical.body %></div>
+         <h5>◆使用した薬と効能</h5>
+        <div class="flex-fill border"><%= @clinical.drug %></div>
+         <h5>◆手術について</h5>
+        <div class="flex-fill border"><%= @clinical.ope %></div>
+         <h5>◆経過</h5>
+        <div class="flex-fill border"><%= @clinical.progress %></div>
+      </div>
+      <% if @user == current_user %>
+        <td><%= link_to 'Edit', edit_clinical_path(@clinical), class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to 'Destroy', clinical_path(@clinical), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+      <% end %>
+
+      </table>
+    </div>
+    
+    <div class="col-md-4">
+      <h2>コメント</h2>
+    　<!--コメント一覧-->
+      <table class="clinical_comments">
+        <%= render 'clinical_comments/index', clinical: @clinical %>
+      </table>
+    </div>
+  </div>
+</div>

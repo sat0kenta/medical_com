@@ -1,6 +1,19 @@
 class HomesController < ApplicationController
   def top
     
+  def guest_sign_in
+    user = User.find_or_create_by!(name: 'guest', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.skip_confirmation!  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+    
+    
+    
+    
     #@clinicals = Clinical.all
     #@clinicals = Clinical.order('id DESC').limit(3)
     @user=current_user

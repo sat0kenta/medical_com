@@ -1,9 +1,30 @@
 Rails.application.routes.draw do
+  
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+  namespace :admin do
+    resources :users, only: [:index, :show, :update]
+    resources :clinical_comments, only: [:destroy, :index]
+  end
+
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
+    registrations: 'users/registrations'
+  }
+  root :to =>"homes#top"
+    
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
+  devise_scope :user do
+   post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+  
+  
+ 
   get 'rooms/show'
   get 'rooms/create'
-  root :to =>"homes#top"
   get "home/about"=>"homes#about"
-  devise_for :users
 
 
   get "search" => "searches#search"
@@ -16,7 +37,11 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :clinical_comments, only: [:create,:destroy]
   end
-  resources :users, only: [:index,:show,:new,:edit, :destroy, :update]
+  resources :users, only: [:index,:show,:new,:edit, :destroy, :update] do
+     member do
+      get :favorites
+    end
+  end
   get '/users/:user_id/clinicals', to: 'clinicals#user_index', as: :user_clinicals
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show]

@@ -1,0 +1,37 @@
+<table class='table'>
+  <thead>
+   
+    <tr>
+      <th>ユーザー</th>
+      <th>名前</th>
+      <th>年齢</th>
+      <th>詳細</th>
+      <th>持病</th>
+      <th>ユーザーステータス</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td><%= user.introduction %></td>
+        <td><%= user.chronic %></td>
+          <% if user.is_active? %>
+            <td class="text-success">
+              <%= button_to "有効", admin_user_path(user.id), method: :patch, class: "btn btn-info", disabled: true %>
+              <%= button_to "無効", admin_user_path(user.id), method: :patch, class: "btn btn-info" %>
+            </td>
+          <% else %>
+            <td class="text-secondary">
+              <%= button_to "有効", admin_user_path(user.id), method: :patch, class: "btn btn-info" %>
+              <%= button_to "無効", admin_user_path(user.id), method: :patch, class: "btn btn-info", disabled: true%>
+            </td>
+          <% end %>
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>

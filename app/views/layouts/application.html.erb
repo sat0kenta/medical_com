@@ -22,7 +22,6 @@
             <ul class="navbar-nav ml-auto">
       
             <% if user_signed_in? %>
-
             <li class="nav-item">
               <%= link_to '投稿一覧', clinicals_path, class: 'nav-link text-primary btn btn-outline-primary' %>
             </li>
@@ -42,6 +41,17 @@
             <li class="nav-item">
               <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
             </li>
+            <li class="nav-item">
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' %>
+            </li>
+            <% end %>
+            
+            <% if admin_signed_in? %> 
+              <% if request.fullpath.include? "/admin" %>
+              <li class="nav-item">
+                 <%= link_to 'ユーザーコメント一覧', admin_clinical_comments_path(current_user), class: 'nav-link text-primary btn btn-outline-primary' %>
+              </li>
+              <% end %>
             <% end %>
             </ul>
           </div>
